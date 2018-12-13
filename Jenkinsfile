@@ -10,21 +10,24 @@ pipeline {
         pollSCM('* * * * *')
     }
     
-    stage ('Deployments'){
-        parallel{
-            stage ('Deploy to Staging'){
-                steps{
-                    sh "scp -i C:/Users/mandlg/Projects/AWS/tomcat-demo.pem **/target.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
-                }
-            }
+    stages{
+        stage ('Deployments'){
+                parallel{
+                    stage ('Deploy to Staging'){
+                        steps{
+                            sh "scp -i C:/Users/mandlg/Projects/AWS/tomcat-demo.pem **/target.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        }
+                    }
 
-            stage ('Deploy to Production'){
-                steps {
-                    sh "scp -i C:/Users/mandlg/Projects/AWS/tomcat-demo.pem **/target.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                    stage ('Deploy to Production'){
+                        steps {
+                            sh "scp -i C:/Users/mandlg/Projects/AWS/tomcat-demo.pem **/target.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        }
+                    }
                 }
             }
-        }
     }
+    
 
 
     
