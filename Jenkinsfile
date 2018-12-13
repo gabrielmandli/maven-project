@@ -27,13 +27,15 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps{
-                        bat "pscp -i C:/sshkeys/tomcat-demo.ppk C:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps -y"
+                        bat "pscp -i C:/sshkeys/tomcat-demo.ppk C:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        echo y
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
                         bat "pscp -i C:/sshkeys/tomcat-demo.ppk C:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        echo y
                     }
                 }
             }
