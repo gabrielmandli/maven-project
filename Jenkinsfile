@@ -4,7 +4,7 @@ pipeline {
     parameters{
         string(name: 'tomcat_dev', defaultValue: '13.59.23.201', description: 'Staging Server')
         string(name: 'tomcat_prod', defaultValue: '18.191.29.222', description: 'Production Server')
-        string(name: 'artifact_path', defaultValue: 'C:/Program Files(x86)/Jenkins/workspace/FullyAutomated/webapp/target', description: "Path to the .WAR Artifact")            
+        string(name: 'artifact_path', defaultValue: "C:/Program Files(x86)/Jenkins/workspace/FullyAutomated/webapp/target", description: "Path to the .WAR Artifact")            
     }
 
     triggers{
