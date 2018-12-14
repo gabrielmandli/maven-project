@@ -11,6 +11,7 @@ pipeline {
             steps {
                 bat 'mvn clean package'
                 bat "docker build . -t tomcatwebapp:${env.BUILD_ID}"
+                bat "docker container start tomcatwebapp"
             }
             post {
                 success{
@@ -19,6 +20,7 @@ pipeline {
                 }
             }
         }
+
 
         stage ('Deployments') {
             parallel{
