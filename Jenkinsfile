@@ -20,22 +20,5 @@ pipeline {
                 }
             }
         }
-
-
-        stage ('Deployments') {
-            parallel{
-                stage ('Deploy to Staging'){
-                    steps{
-                        bat "echo y | pscp -i C:/sshkeys/tomcat-demo.ppk C:/Users/mandlg/jenkins/workspace/FullyAutomated/webapp/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
-                    }
-                }
-
-                stage ('Deploy to Production'){
-                    steps {
-                        bat "echo y | pscp -i C:/sshkeys/tomcat-demo.ppk C:/Users/mandlg/jenkins/workspace/FullyAutomated/webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-                    }
-                }
-            }
-        }
     }    
 }
