@@ -5,10 +5,6 @@ pipeline {
         string(name: 'tomcat_dev', defaultValue: '13.59.23.201', description: 'Staging Server')
         string(name: 'tomcat_prod', defaultValue: '18.191.29.222', description: 'Production Server')         
     }
-
-    triggers{
-        pollSCM('* * * * *')
-    }
     
     stages{
         stage ('Build') {
