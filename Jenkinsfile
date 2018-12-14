@@ -28,7 +28,7 @@ pipeline {
             parallel{
                 stage ('Deploy to Staging'){
                     steps{
-                        bat "echo y | pscp -i C:/sshkeys/tomcat-demo.ppk ${params.artifact_path}/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps'
+                        bat "echo y | pscp -i C:/sshkeys/tomcat-demo.ppk ${params.artifact_path}/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
