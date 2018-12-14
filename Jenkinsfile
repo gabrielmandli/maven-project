@@ -10,7 +10,8 @@ pipeline {
         stage ('Build') {
             steps {
                 bat 'mvn clean package'
-                bat "docker build . -t 1953/tomcatwebapp:${env.BUILD_ID}"
+                bat "docker image build . -t 1953/tomcatwebapp:${env.BUILD_ID}"
+                bat "docker image tag 1953/tomcatwebapp:${env.BUILD_ID} 1953/tomcatwebapp:latest"
                 bat "docker container run -d -p 8090:8080 1953/tomcatwebapp"
             }
             post {
