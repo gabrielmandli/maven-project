@@ -11,7 +11,7 @@ pipeline {
             steps {
                 bat 'mvn clean package'
                 bat "docker build . -t tomcatwebapp:${env.BUILD_ID}"
-                bat "docker container start tomcatwebapp"
+                bat "docker container run -d -p 8090:8080 tomcatwebapp"
             }
             post {
                 success{
